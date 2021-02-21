@@ -44,7 +44,7 @@ export async function getStaticProps({ params }: { params: SlugProps }) {
 
 export default function PostTemplate(props: PostProps) {
   return (
-    <div className="flex flex-col ml-12">
+    <div className="flex flex-col ml-18">
       <Link href="/">
         <a className="mx-auto text-4xl tracking-tight font-extrabold text-gray-900">Moonlite</a>
       </Link>
