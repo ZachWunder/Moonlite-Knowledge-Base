@@ -1,12 +1,7 @@
-import { promises as fsPromises } from 'fs';
-
 import Link from 'next/link';
 
-interface Post {
-  slug: string;
-  createdAt: string;
-  title: string;
-}
+import { getAllPosts } from '../utils/getPosts';
+import { Post } from '../utils/IPost';
 
 interface IndexProps {
   postList: Post[];
@@ -28,7 +23,7 @@ export default function Home(props: IndexProps) {
         <h2 className="text-xl font-medium text-gray-700">Articles</h2>
         {props.postList.map((post) => (
           <Link href={`posts/${post.slug}`}>
-            <a className="mt-5">{post.slug}</a>
+            <a className="mt-5">{post.meta.title}</a>
           </Link>
         ))}
       </div>
@@ -37,20 +32,7 @@ export default function Home(props: IndexProps) {
 }
 
 export async function getStaticProps() {
-  const markdownFiles = await fsPromises.readdir(`${process.cwd()}/src/content`);
-
-  const postList = markdownFiles.map((filename) => {
-    const slug = filename.replace(/.md$/, '');
-    const [year, month, date, ...rest] = slug.split('-');
-    const createdAt = new Date(`${year} ${month} ${date}`).getTime();
-    const title = rest.join(' ');
-
-    return {
-      slug,
-      createdAt,
-      title,
-    };
-  });
+  const postList = getAllPosts();
 
   return {
     props: {
@@ -58,6 +40,3 @@ export async function getStaticProps() {
     },
   };
 }
-// {/* {props.postList.map((post) => (
-//   <h1 key={post.title}>{post.title}</h1>
-// ))} */}
