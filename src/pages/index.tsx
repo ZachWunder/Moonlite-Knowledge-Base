@@ -22,7 +22,7 @@ export default function Home(props: IndexProps) {
       <div className="flex flex-col mt-5 ">
         <h2 className="text-xl font-medium text-gray-700">Articles</h2>
         {props.postList.map((post) => (
-          <Link href={`posts/${post.slug}`}>
+          <Link key={post.meta.title} href={`posts/${post.slug}`}>
             <a className="mt-5">{post.meta.title}</a>
           </Link>
         ))}

@@ -33,7 +33,11 @@ export function getPostBySlug(slug: string): Post {
   }
   console.log(String(data.createdAt));
   const date = new Date(data.createdAt);
-  return { meta: { title, author, createdAt: date.toLocaleDateString('en-US') }, content, slug };
+  return {
+    meta: { title, author, createdAt: date.toLocaleDateString('en-US') },
+    content,
+    slug: realSlug,
+  };
 }
 
 /*

@@ -3,6 +3,7 @@ import { promises as fsPromises } from 'fs';
 import Link from 'next/link';
 
 import { getPostBySlug } from '../../utils/getPosts';
+import { Post } from '../../utils/IPost';
 import { Markdown } from '../../utils/Markdown';
 
 interface SlugProps {
@@ -10,12 +11,7 @@ interface SlugProps {
 }
 
 interface PostProps {
-  post: {
-    slug: string;
-    title: string;
-    content: string;
-    createdAt: string;
-  };
+  post: Post;
 }
 
 export async function getStaticPaths() {
@@ -41,26 +37,24 @@ export async function getStaticProps({ params }: { params: SlugProps }) {
 
   return {
     props: {
-      post: {
-        slug: params.slug,
-        title: post.meta.title,
-        content: post.content,
-        createdAt: post.meta.createdAt,
-      },
+      post,
     },
   };
 }
 
-export default function Post(props: PostProps) {
+export default function PostTemplate(props: PostProps) {
   return (
     <div className="flex flex-col ml-12">
       <Link href="/">
         <a className="mx-auto text-4xl tracking-tight font-extrabold text-gray-900">Moonlite</a>
       </Link>
-      <div className="mb-8 prose">
-        <h1>{props.post.title}</h1>
-        <p>{props.post.createdAt}</p>
-        <p>Author: Moonlite</p>
+      <div className="">
+        <h1 className="font-semibold text-2xl">{props.post.meta.title}</h1>
+        <p>{props.post.meta.createdAt}</p>
+        <p>
+          Author:
+          {props.post.meta.author}
+        </p>
       </div>
       <Markdown markdown={props.post.content} />
     </div>

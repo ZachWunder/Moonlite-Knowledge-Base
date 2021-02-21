@@ -7,7 +7,7 @@ interface MarkdownProps {
 
 export function Markdown(props: MarkdownProps) {
   return (
-    <article className="prose ">
+    <article className="prose prose-blue mt-8">
       <ReactMarkdown plugins={[gfm]}>{props.markdown}</ReactMarkdown>
     </article>
   );
