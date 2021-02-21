@@ -1,5 +1,7 @@
 import { promises as fsPromises } from 'fs';
 
+import Link from 'next/link';
+
 import { Markdown } from '../../utils/Markdown';
 
 interface SlugProps {
@@ -35,7 +37,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: SlugProps }) {
   const [year, month, day, ...rest] = params.slug.split('-');
-  const createdAt = new Date(`${year} ${month} ${day}`).getTime();
+  const createdAt = new Date(`${year} ${month} ${day}`).toLocaleDateString('en-US');
   const title = rest.join(' ');
 
   const content = await fsPromises.readFile(
@@ -57,7 +59,13 @@ export async function getStaticProps({ params }: { params: SlugProps }) {
 
 export default function Post(props: PostProps) {
   return (
-    <div>
+    <div className="flex flex-col">
+      <Link href="/">
+        <a className="mx-auto text-4xl tracking-tight font-extrabold text-gray-900">Moonlite</a>
+      </Link>
+      <p>{props.post.title}</p>
+      <p>{props.post.createdAt}</p>
+      <p>Author: Moonlite</p>
       <Markdown markdown={props.post.content} />
     </div>
   );
