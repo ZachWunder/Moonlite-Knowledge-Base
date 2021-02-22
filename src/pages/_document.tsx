@@ -7,7 +7,7 @@ import Document, {
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html className="nightwind" lang="en">
         <Head>
           <script
             async

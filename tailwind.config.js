@@ -1,6 +1,6 @@
 module.exports = {
   purge: ['./src/**/*.{js,ts,jsx,tsx}', './_posts/**/*.md'],
-  darkMode: false,
+  darkMode: 'class',
   theme: {
     fontSize: {
       xs: '0.75rem',
@@ -40,7 +40,13 @@ module.exports = {
         },
       },
     },
+    nightwind: {
+      typography: true,
+      colorClasses: ['gradient', 'ring', 'ring-offset', 'divide', 'placeholder'],
+    },
   },
-  variants: {},
-  plugins: [require('@tailwindcss/typography')],
+  variants: {
+    nightwind: ['group-hover', 'active', 'focus'],
+  },
+  plugins: [require('@tailwindcss/typography'), require('nightwind')],
 };
