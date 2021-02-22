@@ -44,19 +44,18 @@ export async function getStaticProps({ params }: { params: SlugProps }) {
 
 export default function PostTemplate(props: PostProps) {
   return (
-    <div className="flex flex-col ml-12">
+    <div className="flex flex-col">
       <Link href="/">
         <a className="mx-auto text-4xl tracking-tight font-extrabold text-gray-900">Moonlite</a>
       </Link>
-      <div className="text-gray-900">
+      <div className="text-gray-900 text-center lg:text-left mx-auto lg:ml-12">
         <h1 className="font-semibold text-2xl">{props.post.meta.title}</h1>
         <p>{props.post.meta.createdAt}</p>
-        <p>
-          Author:
-          {props.post.meta.author}
-        </p>
+        <p>{`Author: ${props.post.meta.author}`}</p>
       </div>
-      <Markdown markdown={props.post.content} />
+      <div className="mx-auto lg:ml-12">
+        <Markdown markdown={props.post.content} />
+      </div>
     </div>
   );
 }
