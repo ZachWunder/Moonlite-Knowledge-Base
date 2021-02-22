@@ -23,7 +23,6 @@ export function getPostBySlug(slug: string): Post {
   const fullPath = join(postsDirectory, `${realSlug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
-  console.log(data);
   const { title, author, createdAt } = data;
 
   if (data.isEmpty) {
@@ -31,7 +30,6 @@ export function getPostBySlug(slug: string): Post {
   } else if (!title && !author && !createdAt) {
     throw new Error(`${slug} post doesn't have all front matter fields`);
   }
-  console.log(String(data.createdAt));
   const date = new Date(data.createdAt);
   return {
     meta: { title, author, createdAt: date.toLocaleDateString('en-US') },
@@ -50,6 +48,5 @@ export function getAllPosts(): Post[] {
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.meta.createdAt > post2.meta.createdAt ? -1 : 1));
 
-  console.log(posts);
   return posts;
 }
