@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { getAllPosts } from '../utils/getPosts';
 import { Post } from '../utils/IPost';
+import { Meta } from '../layout/Meta'
 
 interface IndexProps {
   postList: Post[];
@@ -9,6 +10,8 @@ interface IndexProps {
 
 export default function Home(props: IndexProps) {
   return (
+    <>
+    <Meta title="Moonlite" description="Moonlite Development Team" />
     <main className="text-center mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
       <div>
         <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
@@ -28,6 +31,7 @@ export default function Home(props: IndexProps) {
         ))}
       </div>
     </main>
+    </>
   );
 }
 
