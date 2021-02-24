@@ -16,7 +16,7 @@ class MyDocument extends Document {
             src="https://plausible.io/js/plausible.js"
           />
         </Head>
-        <body className="bg-gray-50">
+        <body className="bg-gray-50 dark:bg-gray-700">
           <Main />
           <NextScript />
         </body>

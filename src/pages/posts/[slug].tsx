@@ -53,9 +53,9 @@ export default function PostTemplate(props: PostProps) {
     />
     <div className="flex flex-col">
       <Link href="/">
-        <a className="mx-auto text-4xl tracking-tight font-extrabold text-gray-900">Moonlite</a>
+        <a className="mx-auto text-4xl tracking-tight font-extrabold text-gray-700 dark:text-gray-50">Moonlite</a>
       </Link>
-      <div className="text-gray-900 text-center lg:text-left mx-auto lg:ml-12">
+      <div className="text-gray-700 dark:text-gray-50 text-center lg:text-left mx-auto lg:ml-12">
         <h1 className="font-semibold text-2xl">{title}</h1>
         <p>{createdAt}</p>
         <p>{`Author: ${author}`}</p>

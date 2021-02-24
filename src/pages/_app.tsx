@@ -4,7 +4,14 @@ import { AppProps } from 'next/app';
 
 import '../styles/main.css';
 
-// eslint-disable-next-line react/jsx-props-no-spreading
-const MyApp = ({ Component, pageProps }: AppProps) => <Component {...pageProps} />;
+import { ThemeProvider } from 'next-themes'
 
-export default MyApp;
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <ThemeProvider attribute="class">
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
+}
+
+export default MyApp
